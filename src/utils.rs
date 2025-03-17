@@ -2,6 +2,8 @@ use std::{fs::File, io::BufReader};
 use glam::{Mat3, Vec3};
 use serde::{Deserialize, Serialize};
 
+
+/// Camera struct used to parse the json file which contains the camera intrinsics
 #[derive(Debug, Deserialize)]
 struct Camera {
     fx: f32,
@@ -11,10 +13,10 @@ struct Camera {
 }
 
 pub fn parse_camera_intrensics(file_path: &str) -> Mat3 {
-    let file = File::open(file_path).expect("file not found");
+    let file = File::open(file_path).expect("file not found"); // Used to parse the json file which contains the camera intrinsics
     let reader = BufReader::new(file);
     let camera:Camera = serde_json::from_reader(reader).unwrap();
-    let intrinisics = Mat3 { x_axis: Vec3{x: camera.fx,y: 0.0,      z: 0.0}, 
+    let intrinisics = Mat3 { x_axis: Vec3{x: camera.fx,y: 0.0,      z: 0.0},  //Create a intrinsics matrix from the camera intrinsics
                                  y_axis: Vec3{x: 0.0,      y: camera.fy,z: 0.0}, 
                                  z_axis: Vec3{x: camera.cx,y: camera.cy,z: 0.0} 
                                 };
