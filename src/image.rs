@@ -30,8 +30,8 @@ mod tests {
 
     #[test]
     fn test_create_rgbd_image() {
-        const rgb_path:&str = "rgb.png";
-        const depth_path:&str = "depth.png";
+        const rgb_path:&str = "images/source_img.png";
+        const depth_path:&str = "images/source_depth.png";
         let rgbd = create_rgbd_image(rgb_path, depth_path);
 
         assert_eq!(rgbd.rgb.len(), 640*480*3);
