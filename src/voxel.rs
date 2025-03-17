@@ -7,6 +7,14 @@ pub struct VoxelGrid {
 }
 
 impl VoxelGrid {
+
+    pub fn new(size: f32) -> Self {
+        Self {
+            voxels: HashMap::new(),
+            size,
+        }
+    }
+
     pub fn add_point(&mut self, position: Vec3, color: Vec3) {
         let index = IVec3::new(
             (position.x / self.size) as i32,
